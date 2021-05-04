@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.validators import *
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from system.extra_functionalities import resize_car_image
 # Create your models here.
 
 #Photos
@@ -46,14 +47,26 @@ class Car(models.Model):
     
     car_type = models.CharField(max_length=100, choices=CAR_TYPE_CHOICES)
     num_of_seats = models.IntegerField()
-    cost_par_day = models.CharField(max_length=50)
+    cost_par_day = models.IntegerField()
 
     car_photo = models.ImageField(default = 'car-images/car-default.png', upload_to=rename_car_profile_uploaded_file, storage=OverwriteStorage())
-    
+    status = models.IntegerField(default=0,null=True,blank=True)
+
+    available = models.CharField(max_length=50,default="Available")
+
+    showroom = models.OneToOneField("system.Showroom", on_delete=models.CASCADE,null=True)
+
 
     def __str__(self):
         return self.car_name
 
+    def save(self):
+        super().save()  # saving image first
+
+        resize_car_image(self.car_photo.path)
+        
+        return
+        
 class SaleOrder(models.Model):
     salesman = models.ForeignKey("Accounts.Employee", on_delete=models.CASCADE)
     customer = models.ForeignKey("Accounts.Customer", on_delete=models.CASCADE)

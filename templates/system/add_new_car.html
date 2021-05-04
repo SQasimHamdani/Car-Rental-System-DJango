@@ -1,0 +1,125 @@
+{% extends 'system/layout.html'%}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock%}
+
+{% block css %}
+{% endblock%}
+
+{% block content %}
+<!-- //////////////////////////////// -->
+<div class="wheel-start3">
+    <img src="{% static 'images/bg7.jpg' %}" alt="" class="wheel-img">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 padd-r0">
+                <div class="wheel-start3-body padd-r0 clearfix marg-lg-t255 marg-lg-b75 marg-sm-t190 marg-xs-b30">
+                    <h3>Add a Car</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /////////////////////////////////// -->
+<div class="wheel-register-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 padd-l0">
+                <div class="wheel-register-log marg-lg-t150 marg-lg-b150 marg-sm-t100 marg-sm-b100">
+
+                </div>
+            </div>
+            <div class="col-md-7 padd-r0">
+                <div class="wheel-register-sign marg-lg-t150 marg-lg-b150 marg-sm-t100 marg-sm-b100">
+                    {{message}}
+                    <form action="" method="POST" id="new_car_form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" name="car_name" placeholder="Car Name" required>
+                        <input type="text" name="description" id="id_description" placeholder="Description" required>
+                        <input type="text" name="Manufacturer" id="id_Manufacturer" placeholder="Manufacturer" required>
+                        <input type="text" name="Model" id="id_Model" placeholder="Model" required>
+                        <select name="car_type" id="id_car_type" placeholder="Type"
+                            style="padding-left: 50px; padding-right: 50px;  padding-top: 40px; margin: 20px;" required>
+                            <option value="" selected>---------</option>
+                            <option value="Mini">Savings with Mini Car</option>
+                            <option value="Go">AC Car</option>
+                            <option value="Go Plus">Luxurous Car</option>
+                        </select>
+                        <input type="number" name="num_of_seats" id="id_num_of_seats" placeholder="No of Seats"
+                            required>
+                        <input type="number" name="cost_par_day" id="id_cost_par_day" placeholder="Cost per Day"
+                            required>
+                        <input type="file" accept=".png, .jpg, .jpeg" name="car_photo" id="id_car_photo"
+                            placeholder="Photo" required>
+                        <button type="submit" class="wheel-btn">Add Car</button>
+                        <!-- <input type="submit" class="wheel-btn"> Add Car</input> -->
+                    </form>
+                    <!-- 
+                        Car name:
+
+                    Description:
+
+                    Manufacturer:
+
+                    Model:
+
+                    Car type:
+
+                    Num of seats:
+
+                    Cost par day:
+
+                    Car photo:
+                     -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
+
+
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+<script>
+    /*
+        On submiting the form, send the POST ajax
+        request to server and after successfull submission
+        display the object.
+    */
+    $("#new_car_for").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'add_new_car' %}",
+            enctype: 'multipart/form-data',
+            data: serializedData,
+            processData: false,
+            contentType: false,
+            timeout: 600000,
+            success: function (response) {
+                // on successfull creating object
+                // 1. clear the form.
+                // $("#new_car_form").trigger('reset');
+                // 2. focus to nickname input 
+                $("#car_name").focus();
+                // alert("Car Added");
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
+</script>
+{% endblock%}

@@ -1,0 +1,63 @@
+{% extends 'system/layout.html'%}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock%}
+
+{% block css %}
+{% endblock%}
+
+{% block content %}
+<div class="wheel-start">
+    <img src="{% static 'images/bg1.jpg' %}" alt="" class="wheel-img">
+    <div class="container padd-lr0">
+        <div class="col-lg-6 col-lg-push-6 ">
+            <header class="wheel-header marg-lg-b100 marg-lg-t50  marg-md-b0 marg-md-t0">
+                <h1>We Are Wheel </h1>
+                <h2>Search - Hire - Compare - Save</h2>
+                <span>We Help you Rent Car in Top Locations</span>
+            </header>
+        </div>
+        <div class="col-lg-6 col-lg-pull-6  marg-lg-t0 padd-lr0">
+            <div class="wheel-start-form">
+                {{message}}
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <!-- <label for="input-val11"><span>Dropping Off</span>
+                        <input type="text" name="drop_address" id='input-val11' placeholder="Address" required>
+                    </label> -->
+                    <label for="input-val12"><span>Picking Up</span>
+                        <input type="text" name="picking_address" id='input-val12' placeholder="Address" required>
+                    </label>
+                    <div class="clearfix">
+                        <div class="wheel-date">
+                            <span>Pickup Date</span>
+                            <label for="input-val13" class="fa fa-calendar">
+                                <input class="datetimepicker" name="picking_date" id='input-val13' type="text"
+                                    value="29 Apr">
+                            </label>
+                        </div>
+                        <div class="wheel-date">
+                            <span>Return Date</span>
+                            <label for="input-val15" class="fa fa-calendar">
+                                <input class="datetimepicker" name="return_date" id='input-val15' type="text"
+                                    value="29 Apr">
+                            </label>
+                        </div>
+                    </div>
+                    <label for="input-val18" class="promo promo2">
+                        <button type="submit" class="wheel-btn" id="input-val18">Search</button>
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
+
+
+{% block js %}
+
+{% endblock%}

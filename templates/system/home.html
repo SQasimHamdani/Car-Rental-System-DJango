@@ -1,0 +1,120 @@
+{% extends 'system/layout.html'%}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock%}
+
+{% block css %}
+{% endblock%}
+
+{% block content %}
+
+<!-- ////////////////////////////////////////////////////////////// -->
+<div class="wheel-bg2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12" style="padding-top:200px;">
+                <div class="wheel-header text-center marg-lg-t140 marg-lg-b340 marg-md-t140 marg-md-b140 marg-sm-t70 ">
+                    <h5>the Biggest Online </h5>
+                    <h3>car <span>Rental</span> Service</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /////////////////////////////////////////////////// -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wheel-header wheel-testi-header text-center marg-lg-t155 marg-lg-b65 marg-md-t50  marg-md-b50">
+                <h3>Our Mission is <span>Client’s</span> Satisfaction</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wheel-testimonial text-center">
+                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
+                    nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
+                    cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
+                    ornare odio.</p>
+                <div class="wheel-testimonial-info">
+                    <span>Anthony Marshal</span>
+                    <img src="" alt="">
+                    <p> C.E.O. & Co-Founder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 padd-lr0 ">
+            <div class="wheel-testimonial-item">
+                <i class="fa fa-users"></i>
+                <span data-to="1297" data-speed="10000"></span><b>+</b>
+                <p>Dedicated Employees</p>
+            </div>
+            <div class="wheel-testimonial-item">
+                <i class="fa fa-thumbs-o-up"></i>
+                <span data-to="953" data-speed="5000"></span><b>+</b>
+                <p>Satisfied Customers</p>
+            </div>
+            <div class="wheel-testimonial-item">
+                <i class="fa  fa-car"></i>
+                <span data-to="50" data-speed="6000"></span><b>+</b>
+                <p>100% Fit Veihicles</p>
+            </div>
+            <div class="wheel-testimonial-item">
+                <i class="fa fa-trophy"></i>
+                <span data-to="10" data-speed="1000"></span><b>+</b>
+                <p>Int. Awards Achieved</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /////////////////////////////////////////////////////////// -->
+<div class="wheel-collection wheel-bg2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="wheel-header text-center marg-lg-t140 marg-lg-b65  marg-md-t50 ">
+                    <h5>We have a Great </h5>
+                    <h3>collection of <span>vehicles</span></h3>
+                </div>
+            </div>
+        </div>
+        {% for car in cars%}
+        <div class="row">
+            <div class="col-md-5 padd-lr0">
+                <div class="wheel-collection-info">
+                    <div class="wheel-collection-text">
+                        <h4 class="car-name">{{car.car_name}}</h4>
+                        <span class="car-class">Category: {{car.car_type}}</span>
+                        <h5><b>${{car.cost_par_day}}<sup>00</sup></b>/Day</h5>
+                        <p class="car-text"> {{car.description}}</p>
+                        <ul>
+                            <li><i class="fa fa-suitcase"></i><span class="car-bags">{{car.Manufacturer}}</span>
+                            </li>
+                            <li><i class="fa fa-user"></i><span class="car-passengers">{{car.num_of_seats}}
+                                    Passengers</span></li>
+                            <li><i class="fa fa-tachometer"></i><span class="car-speed">{{car.Model}}</span></li>
+                        </ul>
+                        <a href="" class="wheel-btn">Check Car Availability</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 padd-lr0">
+                <div class="wheel-collection-img"><img src="{{car.car_photo.url}}" alt="" class="car-img"></div>
+            </div>
+        </div>
+        {%endfor%}
+        <div class="wheel-header text-center marg-lg-t140 marg-lg-b65  marg-md-t50 ">
+            <a href="{% url 'all_cars'%}" class="wheel-btn">View All rental Car</a>
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+
+{% block js %}
+{% endblock%}

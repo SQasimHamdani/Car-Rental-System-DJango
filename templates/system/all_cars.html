@@ -1,0 +1,71 @@
+{% extends 'system/layout.html'%}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock%}
+
+{% block css %}
+{% endblock%}
+
+{% block content %}
+
+
+<!-- /////////////////////////////////////////////////////////// -->
+<div class="wheel-collection wheel-bg2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="wheel-header text-center marg-lg-t100 marg-lg-b150  marg-md-t50 marg-md-b100 ">
+                    <h5>We have a Great </h5>
+                    <h3>collection of <span>vehicles</span></h3>
+                </div>
+            </div>
+        </div>
+
+        {% if message %}
+        {% if message == "Success" %}
+        <div class="alert alert-success" role="alert">{{message}}</div>
+        {% elif "Error" in message %}
+        <div class="alert alert-danger" role="alert">{{message}}</div>
+        {% endif %}
+        {% endif %}
+        {% for car in cars%}
+
+        <div class="row">
+            <div class="col-md-5 padd-lr0">
+                <div class="wheel-collection-info">
+                    <div class="wheel-collection-text">
+                        <h4 class="car-name">{{car.car_name}}</h4>
+                        <span class="car-class">Category: {{car.car_type}}</span>
+                        <h5><b>${{car.cost_par_day}}<sup>00</sup></b>/Day</h5>
+                        <p class="car-text"> {{car.description}}</p>
+                        <ul>
+                            <li><i class="fa fa-suitcase"></i><span class="car-bags">{{car.Manufacturer}}</span>
+                            </li>
+                            <li><i class="fa fa-user"></i><span class="car-passengers">{{car.num_of_seats}}
+                                    Passengers</span></li>
+                            <li><i class="fa fa-tachometer"></i><span class="car-speed">{{car.Model}}</span></li>
+                        </ul>
+
+                        <form action="car/{{car.id}}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{car.id}}">
+                            <!-- <a href="{% url 'search_car'%} " class="wheel-btn">Check Car Availability</a> -->
+                            <input class="wheel-btn" type="submit" value="Book Now">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 padd-lr0">
+                <div class="wheel-collection-img"><img src="{{car.car_photo.url}}" alt="" class="car-img"></div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{% endblock%}
+
+
+{% block js %}
+{% endblock%}

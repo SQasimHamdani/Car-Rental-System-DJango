@@ -1,0 +1,75 @@
+{% extends 'system/layout.html'%}
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock%}
+
+{% block css %}
+{% endblock%}
+
+{% block content %}
+<!-- //////////////////////////////// -->
+<div class="wheel-start3">
+    <img src="{% static 'images/bg7.jpg'  %}" alt="" class="wheel-img">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 padd-lr0">
+                <div class="wheel-start3-body clearfix marg-lg-t255 marg-lg-b75 marg-sm-t190 marg-xs-b30">
+                    <h3>Register</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /////////////////////////////////// -->
+<div class="wheel-register-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 padd-l0">
+                <div class="wheel-register-log marg-lg-t150 marg-lg-b150 marg-sm-t100 marg-sm-b100">
+                </div>
+            </div>
+            <div class="col-md-7 padd-r0">
+                <div class="wheel-register-sign marg-lg-t150 marg-lg-b150 marg-sm-t100 marg-sm-b100">
+                    <div class="wheel-header">
+                        <h5>Sign up Now </h5>
+                        <h3>Get <span>Registered</span></h3>
+                    </div>
+
+                    {% if message %}
+                    {% if message == "Success" %}
+                    <div class="alert alert-success" role="alert">{{message}}</div>
+                    {% elif "Error" in message %}
+                    <div class="alert alert-danger" role="alert">{{message}}</div>
+                    {% endif %}
+                    {% endif %}
+
+                    <form action="." method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="text" name="address" placeholder="Address" required>
+                        <input type="text" name="phone" placeholder="Phone" required>
+
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+
+                        <input type="text" name="works_at_showroom" placeholder="Showroom" required>
+                        <label for="input-val1">
+                            <input type="checkbox" id='input-val1'> <span>I agree with the </span>
+                            <a href="">Terms and Conditions</a>
+                        </label>
+                        <button type="submit" class="wheel-btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
+
+
+{% block js %}
+{% endblock%}
