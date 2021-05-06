@@ -54,8 +54,7 @@ class Car(models.Model):
 
     available = models.CharField(max_length=50,default="Available")
 
-    showroom = models.OneToOneField("system.Showroom", on_delete=models.CASCADE,null=True)
-
+    showroom = models.ForeignKey("system.Showroom", on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.car_name
@@ -68,18 +67,20 @@ class Car(models.Model):
         return
         
 class SaleOrder(models.Model):
-    salesman = models.ForeignKey("Accounts.Employee", on_delete=models.CASCADE)
+    # salesman = models.ForeignKey("Accounts.Employee", on_delete=models.CASCADE)
     customer = models.ForeignKey("Accounts.Customer", on_delete=models.CASCADE)
 
     showroom = models.ForeignKey(Showroom, on_delete=models.CASCADE,blank=True,null=True)
     car = models.ForeignKey(Car, on_delete=models.CASCADE,blank=True,null=True)
 
-    Order_Date = models.DateTimeField(blank=True,null=True,default=now)
-    Deliver_Date = models.DateTimeField(blank=True,null=True)
+    address = models.CharField(max_length = 100,default="")
+
+    Order_Date = models.DateField(blank=True,null=True)
+    Deliver_Date = models.DateField(blank=True,null=True)
 
     def __str__(self):
         days = self.Deliver_Date - self.Order_Date
-        return "customer-{} booked car-{} from showroom-{} by salesman-{} for {} days".format(self.customer,self.car,self.showroom,self.salesman,days)
+        return "customer-{} booked car-{} from showroom-{} for {} days".format(self.customer,self.car,self.showroom,days)
 
 class Feedback(models.Model):
     customer = models.ForeignKey("Accounts.Customer", on_delete=models.CASCADE)

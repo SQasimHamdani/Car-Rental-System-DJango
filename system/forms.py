@@ -24,6 +24,7 @@ class SaleOrderForm(forms.ModelForm):
             "car",
             "Order_Date",
             "Deliver_Date",
+            "address",
         ]
 
 # class ShowroomForm(forms.ModelForm):

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="wheel-logo">
-                    <a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a>
+                    <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
                 </div>
             </div>
             <div class="col-sm-9 col-xs-12 padd-lr0">
@@ -35,11 +35,11 @@
 
                                 <ul class="dropdown-menu">
                                     {% if not request.user.is_authenticated %}
-                                    <li><a href="login">Login</a></li>
-                                    <li><a href="register">Register</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    <li><a href="{% url 'register' %}">Register</a></li>
                                     {%else%}
-                                    <li><a href="add_new_car">Add a Car</a></li>
-                                    <li><a href="signout">Signout</a></li>
+                                    <li><a href="{% url 'add_new_car' %}">Add a Car</a></li>
+                                    <li><a href="{% url 'signout' %}">Signout</a></li>
 
                                     {%endif%}
                                 </ul>
@@ -54,14 +54,14 @@
                         <!-- class="dl-menu" -->
                         <ul class="main-menu dl-menu">
                             <li class="menu-item   current-menu-parent menu-item-has-children   active-color ">
-                                <a href="/">Home</a>
+                                <a href="{% url 'home' %}">Home</a>
                             </li>
                             <li class="menu-item   ">
-                                <a href="all_cars">Available Cars</a>
+                                <a href="{% url 'all_cars' %}">Available Cars</a>
                             </li>
 
                             <li class="menu-item   ">
-                                <a href="all_showrooms">All Showrooms</a>
+                                <a href="{% url 'all_showrooms' %}">All Showrooms</a>
                             </li>
                             <li class="menu-item menu-item-has-children  ">
                                 <a href="#">Pages</a>

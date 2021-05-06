@@ -18,11 +18,12 @@
 15 Load resize
 -------------------------------------------------------------------*/
 
-;
+
+
 (function($, window, document, undefined) {
     "use strict";
 
-// time picker
+    // time picker
 
     if ($('.timepicker').length) {
         $('.timepicker').datetimepicker({
@@ -31,27 +32,27 @@
         });
     }
     if ($('.datetimepicker').length) {
+        
 
-
-        $.datetimepicker.setLocale('de');
+        $.datetimepicker.setLocale('en');
 
         $('.datetimepicker').datetimepicker({
             i18n: {
-                de: {
+                en: {
                     months: [
-                        'Januar', 'Februar', 'März', 'April',
-                        'Mai', 'Juni', 'Juli', 'August',
-                        'September', 'Oktober', 'November', 'Dezember',
+                        'January', 'February', 'March', 'April',
+                        'May', 'June', 'July', 'August',
+                        'September', 'October', 'November', 'December',
                     ],
                     dayOfWeek: [
-                        "So.", "Mo", "Di", "Mi",
-                        "Do", "Fr", "Sa.",
+                        "Sun", "Mon", "Tues", "Wed",
+                        "Thurs", "Fri", "Sat",
                     ]
                 }
             },
             timepicker: false,
 
-            format: 'd.m'
+            format: 'd.m.Y'
         });
     }
 

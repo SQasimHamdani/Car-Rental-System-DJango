@@ -48,7 +48,7 @@
                             <li><i class="fa fa-tachometer"></i><span class="car-speed">{{car.Model}}</span></li>
                         </ul>
 
-                        <form action="car/{{car.id}}" method="post">
+                        <form action="car/{{car.id}}" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="id" value="{{car.id}}">
                             <!-- <a href="{% url 'search_car'%} " class="wheel-btn">Check Car Availability</a> -->

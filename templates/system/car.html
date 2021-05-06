@@ -14,17 +14,8 @@
 <!-- /////////////////////////////////////////////////////////// -->
 <div class="wheel-collection wheel-bg2">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="wheel-header text-center marg-lg-t100 marg-lg-b150  marg-md-t50 marg-md-b100 ">
-                    <h5>We have a Great </h5>
-                    <h3>collection of <span>vehicles</span></h3>
-                </div>
-            </div>
-        </div>
-
         {% if message %}
-        {% if message == "Success" %}
+        {% if "Success" in message %}
         <div class="alert alert-success" role="alert">{{message}}</div>
         {% elif "Error" in message %}
         <div class="alert alert-danger" role="alert">{{message}}</div>
@@ -46,7 +37,12 @@
                                     Passengers</span></li>
                             <li><i class="fa fa-tachometer"></i><span class="car-speed">{{car.Model}}</span></li>
                         </ul>
-                        <a href="{% url 'search_car'%} " class="wheel-btn">Check Car Availability</a>
+                        <form action="{{car.id}}/book" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="book_view" value="book_page">
+                            <!-- <a href="{% url 'search_car'%} " class="wheel-btn">Check Car Availability</a> -->
+                            <input class="wheel-btn" type="submit" value="Confirm Booking">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,7 +53,6 @@
     </div>
 </div>
 {% endblock%}
-
 
 {% block js %}
 {% endblock%}

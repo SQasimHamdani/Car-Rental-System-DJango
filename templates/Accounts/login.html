@@ -33,7 +33,7 @@
                     </div>
 
                     {% if message %}
-                    {% if message == "Success" %}
+                    {% if "Success" in message %}
                     <div class="alert alert-success" role="alert">{{message}}</div>
                     {% elif "Error" in message %}
                     <div class="alert alert-danger" role="alert">{{message}}</div>
