@@ -27,17 +27,14 @@ class SaleOrderForm(forms.ModelForm):
             "address",
         ]
 
-# class ShowroomForm(forms.ModelForm):
-#     class Meta:
-#         model = Car
-#         fields = [
-#             "image",
-#             "car_name",
-#             "company_name",
-#             "num_of_seats",
-#             "cost_par_day",
-#             "content",
-#         ]
+class ShowroomForm(forms.ModelForm):
+    class Meta:
+        model = Showroom
+        fields = [
+            "name",
+            "address",
+            "contact",
+        ]
 
 # class FeedbackForm(forms.ModelForm):
 #     class Meta:

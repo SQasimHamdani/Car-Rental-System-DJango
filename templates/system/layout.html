@@ -12,7 +12,7 @@
     {% block css %}
 
     {% endblock%}
-    <!-- <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon"> -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <!-- reset css -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/css_reset.css' %}">
     <!-- bootstrap -->
@@ -54,7 +54,7 @@
                                     VIC 3000, Australia </span>
                             </li>
                             <li><a href=""><span><i class="fa fa-phone"></i> +61 3 8376 6284</span></a></li>
-                            <li><a href=""><span><i class="fa fa-envelope"></i>contact@wheel-rental.com</span></a></li>
+                            <li><a href=""><span><i class="fa fa-envelope"></i>contact@car_rental.com</span></a></li>
                         </ul>
                         <div class="wheel-soc">
                             <a href="" class="fa fa-twitter"></a>
@@ -71,49 +71,17 @@
                         <ul>
                             <li><a href="" class="">About us</a></li>
                             <li><a href="" class="">Customer Service</a></li>
-                            <li><a href="" class="">Contact Us</a></li>
-                            <li><a href="" class="">Safety Recall</a></li>
                             <li><a href="" class="">Privacy policy</a></li>
-                            <li><a href="" class="">Site Map</a></li>
                             <li><a href="" class="">Terms & condition</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6  padd-lr0">
                     <div class="wheel-footer-item ">
-                        <h3>Vehicles</h3>
+                        <h3>Showrooms</h3>
                         <ul>
-                            <li><a href="" class="">Exotic Cars</a></li>
-                            <li><a href="" class="">SUVs</a></li>
-                            <li><a href="" class="">Trucks</a></li>
-                            <li><a href="" class="">Mini Vans</a></li>
-                            <li><a href="" class="">Moving Trucks</a></li>
-                            <li><a href="" class="">Vans</a></li>
-                            <li><a href="" class="">RVs</a></li>
+                            <li><a href="{ % url 'all_showrooms' % }" class="">Showrooms</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 padd-lr0">
-                    <div class="wheel-footer-gallery">
-                        <h3>Photo Gallery</h3>
-                        <div class="  clearfix">
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i11.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i12.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i13.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i14.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i15.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i16.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i17.jpg' %}"
-                                        alt=""></a></div>
-                            <div class="wheel-footer-galery-item"><a href=""><img src="{% static 'images/i18.jpg' %}"
-                                        alt=""></a></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -122,13 +90,15 @@
     <div class="wheel-footer-info wheel-bg6">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-sm-6  padd-lr0"><span>&#169; Designed with Love By Rent a Car</span>
+                <div class="col-lg-12 col-sm-12 text-center padd-lr0"><span>&#169; Designed with Love &#129505; By Rent
+                        a
+                        Car</span>
                 </div>
-                <div class="col-lg-4 col-sm-6 padd-lr0">
+                <!-- <div class="col-lg-4 col-sm-6 padd-lr0">
                     <ul>
                         <li><a href="">Home</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

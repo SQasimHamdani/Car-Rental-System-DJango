@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 # import datetime
 from datetime import datetime,date, timedelta
-import date_converter
 
 from django.http import HttpResponseRedirect
-from .forms import CarForm, SaleOrderForm
+from .forms import CarForm, SaleOrderForm, ShowroomForm
 # ShowroomForm,  FeedbackForm
 from .models import Car, SaleOrder, Showroom
 
@@ -46,9 +45,11 @@ def all_cars(request):
             booked_car.available = "Available"
             booked_car.save()
 
-                
-
-    cars = Car.objects.filter(available="Available")
+    if request.method == "POST":
+        showroom_id = request.POST.get('showroom_cars')
+        cars = Car.objects.filter(available="Available", showroom=showroom_id)
+    else:
+        cars = Car.objects.filter(available="Available")
     context = {
         "title" : "Check Variety of Cars",
         "cars" : cars
@@ -72,10 +73,45 @@ def all_showrooms(request):
     }
     return render(request,'system/all_showrooms.html', context)
 
+def add_new_showroom(request):
+    if request.method == "POST":
+        
+        # print('this is a POST Request')
+        form = ShowroomForm(request.POST or None, request.FILES or None)
+        # print(request.POST)
+        # print(request.FILES)
+        # print(request.FILES.get('car_photo'))
+        
+        if form.is_valid():
+            # car_name = form.cleaned_data['car_name']
+            # print(car_name)
+            # car_photo = form.cleaned_data['car_photo']
+            # print(car_photo)
+            form.save()
+            context = {
+                "title" : "Add a Showroom",
+                "message" : "Success",
+            }
+        else:
+            # print('invalid',form.errors.as_data())
+            context = {
+            "title" : "Adding a Showroom",
+            "form" : ShowroomForm,
+            "message" : "Error while creating showroom - Try choosing a unique different name",
+            }
+    else:
+        context = {
+        "title" : "Add a Showroom",
+        "form" : ShowroomForm,
+        "message" : " ",
+    }
+
+    return render(request,'system/add_new_showroom.html', context)
+
 def search_car(request):
     # car = Car.objects.all()
     
-    bookings = SaleOrder.objects.all()
+    # bookings = SaleOrder.objects.all()
 
     if request.method == "POST":
         
@@ -97,12 +133,12 @@ def search_car(request):
 
     context = {
         "title" : "Search a Car",
-        "message" : bookings
+        # "message" : bookings
     }
     return render(request,'system/search_car.html', context)
 
 def add_new_car(request):
-    
+    showrooms = Showroom.objects.all()
     if request.method == "POST":
         
         # print('this is a POST Request')
@@ -112,26 +148,30 @@ def add_new_car(request):
         # print(request.FILES.get('car_photo'))
         
         if form.is_valid():
-            car_name = form.cleaned_data['car_name']
+            # car_name = form.cleaned_data['car_name']
             # print(car_name)
-            car_photo = form.cleaned_data['car_photo']
+            # car_photo = form.cleaned_data['car_photo']
             # print(car_photo)
             form.save()
             context = {
                 "title" : "Add a Car",
                 "message" : "Success",
+                "showrooms" : showrooms,
             }
         else:
-            print('invalid',form.errors.as_data())
+            # print('invalid',form.errors.as_data())
             context = {
             "title" : "Adding a Car",
             "form" : CarForm,
-            "message" : "",}
+            "message" : form.errors.as_data(),
+            "showrooms" : showrooms,
+            }
     else:
         context = {
         "title" : "Add a Car",
         "form" : CarForm,
         "message" : " ",
+        "showrooms" : showrooms,
     }
 
     return render(request,'system/add_new_car.html', context)
@@ -160,7 +200,7 @@ def book_a_car(request,id):
 
     elif request.method == "POST":
         
-        print('this is a POST Request')
+        # print('this is a POST Request')
         # form = CarForm(request.POST or None, request.FILES or None)
         # print(request.POST.get('picking_address'))
         # print(request.POST.get('picking_date'))

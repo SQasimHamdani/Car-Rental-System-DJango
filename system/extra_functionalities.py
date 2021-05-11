@@ -61,6 +61,7 @@ def resize_car_image(image_path):
     # img = img.resize(new_img, Image.ANTIALIAS)
     # img.save(self.car_photo.path)  # saving image at the same path
     """
+
 def check_booking_availability(SaleOrder,Car,search_parameters):
     bookings = SaleOrder.objects.all()
     cars = Car.objects.all()
@@ -82,4 +83,3 @@ def check_booking_availability(SaleOrder,Car,search_parameters):
         else:
             available_cars.append(False)
         return any(available_cars)
-

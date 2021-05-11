@@ -14,7 +14,7 @@ from PIL import Image
 
 
 class Showroom(models.Model):
-    name    = models.CharField(validators = [MinLengthValidator(3), MaxLengthValidator(50)], max_length = 50)
+    name    = models.CharField(validators = [MinLengthValidator(3), MaxLengthValidator(50)], max_length = 50, unique=True)
     address = models.CharField(max_length = 100)
     contact = models.CharField(validators = [MinLengthValidator(10), MaxLengthValidator(15)], max_length = 15)
 

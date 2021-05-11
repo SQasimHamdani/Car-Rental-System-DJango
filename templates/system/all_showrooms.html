@@ -14,6 +14,8 @@
 <!-- /////////////////////////////////////////////////////////// -->
 <div class="wheel-collection wheel-bg2">
     <div class="container">
+
+
         <div class="row">
             <div class="col-xs-12">
                 <div class="wheel-header text-center marg-lg-t100 marg-lg-b150  marg-md-t50 marg-md-b100 ">
@@ -24,49 +26,56 @@
         </div>
 
 
-        {% if message %}
-        {% if message == "Success" %}
+        {% if "Success" in message %}
         <div class="alert alert-success" role="alert">{{message}}</div>
         {% elif "Error" in message %}
         <div class="alert alert-danger" role="alert">{{message}}</div>
         {% endif %}
-        {% endif %}
 
-        {% for showroom in showrooms%}
+
         <div class="container no-padding">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="table-responsive wheel-cart padd-l0 padd-r0">
-                        <table class="wheel-table-cart marg-lg-t140 marg-lg-b140 marg-md-t100 marg-sm-t80 marg-xs-t60">
+                    <div class="table-responsive wheel-cart text-center padd-lr0">
+                        <table class="wheel-table-cart marg-lg-t10 marg-lg-b10 marg-md-t10 marg-sm-t0 marg-xs-t0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
+                                    <th style="width:20%">ID</th>
+                                    <th style="text-align:left">Name</th>
                                     <th>Address</th>
                                     <th>Contact</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for showroom in showrooms%}
                                 <tr>
-                                    <td>{{showroom.id}}</td>
-                                    <td>{{showroom.name}}</td>
+                                    <td style="width:100px">{{showroom.id}}</td>
+                                    <td style="text-align:left">{{showroom.name}}</td>
                                     <td>{{showroom.address}}</td>
                                     <td>{{showroom.contact}}</td>
+
+                                    <!-- <td>
+                                        <a href="{% url 'all_cars'%} " class="wheel-btn">Select</a>
+                                    </td> -->
                                     <td>
-                                        <a href="{% url 'search_car'%} " class="wheel-btn">Select</a>
+                                        <form action="all_cars" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="showroom_cars" value="{{showroom.id}}">
+                                            <input class="wheel-btn" type="submit" value="Select">
+                                        </form>
                                     </td>
                                 </tr>
+                                {%endfor%}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        {%endfor%}
     </div>
     {% endblock%}
 
     {% block js %}
-    
+
     {% endblock%}
